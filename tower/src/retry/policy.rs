@@ -86,8 +86,8 @@ pub trait Policy<Req, Res, E> {
     /// [`Service::Error`]: crate::Service::Error
     fn retry(
         &mut self,
-        req: &mut Req,
-        result: &mut Result<Res, E>,
+        req: &mut Self::CloneableRequest,
+        result: Result<Res, E>,
     ) -> Outcome<Self::Future, Res, E>;
 
     /// Consume initial request and returns `CloneableRequest` which
